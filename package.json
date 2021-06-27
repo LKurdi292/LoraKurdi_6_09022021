@@ -1,7 +1,7 @@
 {
-  "name": "back",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Exercice MEAN - cours P6",
+  "description": "So Peckoko",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

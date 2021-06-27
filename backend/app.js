@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 require('dotenv').config();
-const stuffRoutes = require('./routes/stuff');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 // Connection de l'API à la bdd mongoDB que l'on a créée
@@ -34,7 +34,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 // Utilisation des routes
-app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 // Exportation de l'app pour utilisation par d'autres fichiers, nottament le serveur Node.
