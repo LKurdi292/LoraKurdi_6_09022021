@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
 	password: { type: String, required: true} 
 });
 
-// Application du validateur au schéma
+// Application du validateur d'unicité au schéma (impossible d'avoir plusieurs utlisateurs avec plusieurs adresses mail)
 userSchema.plugin(uniqueValidator);
 
 

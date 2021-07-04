@@ -32,7 +32,7 @@ exports.login = (req, res, next) => {
 		// si oui, vérifier le mdp
 		bcrypt.compare(req.body.password, user.password)
 		.then( valid => {
-			// si comparaion fausse
+			// si comparaison fausse
 			if (!valid) {
 				return (res.status(401).json({ error: 'Mot de passe incorrect!'}));
 			}

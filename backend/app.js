@@ -2,12 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-
-require('dotenv').config();
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-// Connection de l'API à la bdd mongoDB que l'on a créée
+require('dotenv').config();
+
+// Connexion de l'API à la bdd mongoDB que l'on a créée
 mongoose.connect(process.env.MONGO_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
