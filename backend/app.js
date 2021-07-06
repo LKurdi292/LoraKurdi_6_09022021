@@ -1,11 +1,13 @@
 // Importations
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const path = require('path');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 require('dotenv').config();
+
 
 // Connexion de l'API à la bdd mongoDB que l'on a créée
 mongoose.connect(process.env.MONGO_DB,
@@ -16,6 +18,7 @@ mongoose.connect(process.env.MONGO_DB,
 
 // Création de l'app
 const app = express();
+app.use(helmet());
 
 // middleware général 1 pour définir les headers de toutes les requetes
 app.use((req, res, next) => {
