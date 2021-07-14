@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const path = require('path');
+const multer = require("multer");
+// parse form-data
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
@@ -18,7 +20,11 @@ mongoose.connect(process.env.MONGO_DB,
 
 // Création de l'app
 const app = express();
+
+// Helmet et Multer
 app.use(helmet());
+app.use(multer().any());
+
 
 // middleware général 1 pour définir les headers de toutes les requetes
 app.use((req, res, next) => {

@@ -5,6 +5,7 @@ const sauceCtrl = require('../controllers/sauce');
 
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
+const sauceCheck = require('../middleware/createSauceCheck');
 
 /******** Les routes *********/
 
@@ -16,7 +17,7 @@ router.get('/', auth, sauceCtrl.getAllSauces);
 router.get('/:id', auth, sauceCtrl.getOneSauce);
 
 //middleware de la route Créer une sauce
-router.post('/', auth, multer, sauceCtrl.createSauce);
+router.post('/', auth, multer, sauceCheck, sauceCtrl.createSauce);
 
 // middleware de la route modifier une sauce
 router.put('/:id', auth, multer, sauceCtrl.modifySauce);
