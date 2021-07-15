@@ -6,6 +6,7 @@ const sauceCtrl = require('../controllers/sauce');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 const sauceCheck = require('../middleware/createSauceCheck');
+const modifyCheck = require('../middleware/modifySauceCheck');
 
 /******** Les routes *********/
 
@@ -20,7 +21,7 @@ router.get('/:id', auth, sauceCtrl.getOneSauce);
 router.post('/', auth, multer, sauceCheck, sauceCtrl.createSauce);
 
 // middleware de la route modifier une sauce
-router.put('/:id', auth, multer, sauceCtrl.modifySauce);
+router.put('/:id', auth, multer, modifyCheck, sauceCtrl.modifySauce);
 
 //middleware de la route pour supprimer une sauce
 router.delete('/:id', auth, sauceCtrl.deleteSauce);

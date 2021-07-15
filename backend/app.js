@@ -21,10 +21,8 @@ mongoose.connect(process.env.MONGO_DB,
 // Création de l'app
 const app = express();
 
-// Helmet et Multer
+// Helmet
 app.use(helmet());
-app.use(multer().any());
-
 
 // middleware général 1 pour définir les headers de toutes les requetes
 app.use((req, res, next) => {
