@@ -1,3 +1,5 @@
+// Middleware qui vérifie les champs email et mdp
+
 // Format email
 const mailFormat = new RegExp("^[A-Za-z0-9-_.]+@[a-z]{3,}[.][a-z]{2,4}$");
 

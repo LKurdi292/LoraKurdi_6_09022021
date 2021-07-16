@@ -45,10 +45,12 @@ exports.createSauce = (req, res, next) => {
 exports.modifySauce = (req, res, next) => {
 	// si nouvelle image
 	if (req.file) {
+		
 		Sauce.findOne({ _id: req.params.id})
 		.then(sauce => {
 			// extraction du nom de l'ancienne image à supprimer
 			const filename = sauce.imageUrl.split('/images/')[1];
+
 			// supprimer la première image
 			fs.unlink(`images/${filename}`, () => {
 				const SauceObject = {
@@ -62,7 +64,7 @@ exports.modifySauce = (req, res, next) => {
 			});
 		})
 	} else {
-		const SauceObject = { ...req.body.sauce };
+		const SauceObject = { ...req.body };
 	
 		Sauce.updateOne({ _id : req.params.id }, { ...SauceObject, _id : req.params.id })
 		.then(() => res.status(200).json({message: 'Objet modifié !'}))
