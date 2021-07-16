@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
 			// si tout est ok, on peut passer la requête au prochain middleware
 			next();
 		} else {
-			console.log("unlink", req.file.filename);
+			// sinon on supprime la nouvelle image que multer a déjà sauvegardé
 			fs.unlink(`images/${req.file.filename}`, () => {
 				res.status(400).json({ error: 'Requête non valable, l\'image a été supprimée' });
 			})

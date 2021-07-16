@@ -47,7 +47,7 @@ exports.modifySauce = (req, res, next) => {
 	if (req.file) {
 		Sauce.findOne({ _id: req.params.id})
 		.then(sauce => {
-			// extraction du nom du fichier à supprimer
+			// extraction du nom de l'ancienne image à supprimer
 			const filename = sauce.imageUrl.split('/images/')[1];
 			// supprimer la première image
 			fs.unlink(`images/${filename}`, () => {
@@ -105,7 +105,9 @@ exports.likeStatus = (req, res, next) => {
 		});
 	} else if (likeValue === -1 ) {
 		Sauce.updateOne({ _id : req.params.id },
-			{ $push: { usersDisliked : user }, $inc: { dislikes: +1 }})
+			{ $push: { usersDisliked : user },
+			 $inc: { dislikes: +1 }
+			})
 		.then(() => res.status(201).json({ message: 'Sauce détestée ! '}))
 		.catch(error => { 
 			console.log( error.message );
