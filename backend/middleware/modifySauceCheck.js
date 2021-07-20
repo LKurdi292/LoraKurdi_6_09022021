@@ -1,4 +1,4 @@
-// Middleware qui vérifie si les champs ne sont constitués QUE d'espaces. (l'absence de caractères est déjà vérifiée par le front => bouton submit disabled)
+// Middleware qui vérifie si les champs ne sont constitués QUE d'espaces à la suite. (l'absence de caractères est déjà vérifiée par le front => bouton submit disabled)
 
 const fs = require('fs');
 const spaceRegex = /^ +$/;

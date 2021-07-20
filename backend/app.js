@@ -3,8 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const path = require('path');
-const multer = require("multer");
-// parse form-data
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
