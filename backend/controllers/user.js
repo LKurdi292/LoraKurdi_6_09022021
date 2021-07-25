@@ -2,17 +2,25 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cryptoJS = require('crypto-js');
 
 
 // Middlewares d'authentification
 
 exports.signup = (req, res, next) => {
+
+	// Crypter l'email
+	const key = cryptoJS.enc.Hex.parse(process.env.CryptojsKEY);
+	const iv = cryptoJS.enc.Hex.parse("101112131415161718191a1b1c1d1e1f");
+	const encrypted = cryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+
 	//hasher le mdp + nbr de tour de hashage
 	bcrypt.hash(req.body.password, 10)
+
 	.then(hash => {
 		// nouvel utilisateur, enregistrement dans la bdd
 		const user = new User({
-			email: req.body.email,
+			email: encrypted,
 			password: hash
 		});
 		user.save()
@@ -23,7 +31,13 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-	User.findOne({ email: req.body.email })
+	// Crypter le mail de la requete
+	const key = cryptoJS.enc.Hex.parse(process.env.CryptojsKEY);
+	const iv = cryptoJS.enc.Hex.parse("101112131415161718191a1b1c1d1e1f");
+	const encrypted = cryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+	
+	// le chercher dans la base de donnée
+	User.findOne({ email: encrypted })
 	.then(user => {
 		// vérifier que l'utilisateur existe
 		if (!user) {
