@@ -4,7 +4,7 @@ const rateLimit = require("express-rate-limit");
 
 let limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 2,  // limiter chaque adresse IP à 10 requêtes par fenêtre de tps (windowMs)
+	max: 5,  // limiter chaque adresse IP à 5 requêtes par fenêtre de tps (windowMs)
 	headers: true,
 	message:  "Trop de tentatives de connexion. Ré-essayez dans 15min"
 });
